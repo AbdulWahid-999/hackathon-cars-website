@@ -7,15 +7,16 @@ import { VscSettings } from "react-icons/vsc";
 import Wrap from "./Wrap";
 import Image from "next/image";
 
+
 export default function Navbar() {
   return (
     <Wrap>
       <header>
         <nav className="flex justify-between items-center mb-10 mt-4 lg:py-5 lg:px-5 px-1 ">
           <div className="flex">
-            <h1 className="text-[#3563E9] text-[24px] font-[600] lg:text-[35px] lg:font-bold lg:leading-10">
+            <Link href="/"><h1 className="text-[#3563E9] text-[24px] font-[600] lg:text-[35px] lg:font-bold lg:leading-10">
               MORENT
-            </h1>
+            </h1></Link>
           </div>
 
           {/* Mobile Header */}

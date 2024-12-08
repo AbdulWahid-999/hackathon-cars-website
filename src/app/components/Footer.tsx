@@ -1,118 +1,64 @@
+import React from 'react';
+import Wrap from './Wrap';
 
-
-const Footer = () => {
+export default function Footer() {
   return (
-    <footer className="bg-white border-t border-gray-200 ">
-      <div>
-        {/* Top Section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-          {/* Logo and Vision */}
-          <div className="pl-8 ml-8 mr-10">
-            <h1 className="text-2xl font-bold text-blue-500">MORENT</h1>
-            <p className="text-sm text-gray-600 mt-2">
-              Our vision is to provide convenience and help increase your sales business.
-            </p>
-          </div>
-
-          {/* About Section */}
-          <div className="ml-56">
-            <h2 className="text-lg font-semibold text-gray-800">About</h2>
-            <ul className="mt-2">
-              <li>
-                <a href="#" className="text-sm text-gray-600 hover:text-blue-500">
-                  How it works
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-gray-600 hover:text-blue-500">
-                  Featured
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-gray-600 hover:text-blue-500">
-                  Partnership
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-gray-600 hover:text-blue-500">
-                  Business Relation
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Community Section */}
-          <div className="ml-14">
-            <h2 className="text-lg font-semibold text-gray-800">Community</h2>
-            <ul className="mt-2 space-y-1">
-              <li>
-                <a href="#" className="text-sm text-gray-600 hover:text-blue-500">
-                  Events
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-gray-600 hover:text-blue-500">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-gray-600 hover:text-blue-500">
-                  Podcast
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-gray-600 hover:text-blue-500">
-                  Invite a friend
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Socials Section */}
-          <div>
-            <h2 className="text-lg font-semibold text-gray-800">Socials</h2>
-            <ul className="mt-2 space-y-1">
-              <li>
-                <a href="#" className="text-sm text-gray-600 hover:text-blue-500">
-                  Discord
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-gray-600 hover:text-blue-500">
-                  Instagram
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-gray-600 hover:text-blue-500">
-                  Twitter
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-gray-600 hover:text-blue-500">
-                  Facebook
-                </a>
-              </li>
-            </ul>
-          </div>
+    <Wrap>
+    <div className="relative flex flex-col items-center justify-center gap-6 px-5 w-full bg-white py-6">
+      <div className="first w-full flex flex-wrap items-start justify-between gap-6">
+        {/* Intro Section */}
+        <div className="intro flex flex-col gap-2 w-full lg:w-auto">
+          <h1 className="text-[#3563e9] text-2xl lg:text-3xl font-bold text-center lg:text-left">MORENT</h1>
+          <p className="text-gray-500 text-center lg:text-left w-[300px]">
+            Our vision is to provide convenience and help increase your sales business.
+          </p>
         </div>
 
-        {/* Bottom Section */}
-        <div className="mt-8 flex flex-col sm:flex-row justify-between items-center border-t border-gray-200 pt-4">
-          <p className="text-sm text-gray-600">
-            © 2022 MORENT. All rights reserved
-          </p>
-          <div className="flex space-x-4 mt-4 sm:mt-0">
-            <a href="#" className="text-sm text-gray-600 hover:text-blue-500">
-              Privacy & Policy
-            </a>
-            <a href="#" className="text-sm text-gray-600 hover:text-blue-500">
-              Terms & Condition
-            </a>
+   
+        <div className="lists flex flex-wrap gap-20 justify-center lg:justify-between w-full lg:w-auto lg:mr-10">
+          <div className="about">
+            <ul className="flex flex-col gap-3">
+              <li className="font-bold text-lg"><h1>About</h1></li>
+              <li>How it works</li>
+              <li>Featured</li>
+              <li>Partnership</li>
+              <li>Business Relation</li>
+            </ul>
+          </div>
+          <div className="community">
+            <ul className="flex flex-col gap-3">
+              <li className="font-bold text-lg"><h1>Community</h1></li>
+              <li>Events</li>
+              <li>Blog</li>
+              <li>Podcast</li>
+              <li>Invite a friend</li>
+            </ul>
+          </div>
+          <div className="socials">
+            <ul className="flex flex-col gap-3">
+              <li className="font-bold text-lg"><h1>Socials</h1></li>
+              <li>Discord</li>
+              <li>Instagram</li>
+              <li>Facebook</li>
+              <li>Twitter</li>
+            </ul>
           </div>
         </div>
       </div>
-    </footer>
-  );
-};
 
-export default Footer;
+ 
+      <div className="line border-t w-full border-[#e7eef6]"></div>
+
+      <div className="last w-full flex flex-wrap items-center justify-between gap-4">
+        <div className="first text-center lg:text-left w-full lg:w-auto">
+          <h1 className="font-bold text-sm">©2022 MORENT. All rights reserved</h1>
+        </div>
+        <div className="second flex flex-wrap justify-center lg:justify-end items-center gap-4 w-full lg:w-auto">
+          <h1 className="font-bold text-sm">Privacy & Policy</h1>
+          <h1 className="font-bold text-sm">Terms & Conditions</h1>
+        </div>
+      </div>
+    </div>
+    </Wrap>
+  );
+}
