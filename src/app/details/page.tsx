@@ -31,7 +31,7 @@ export default function page() {
             </div>
             <div className="flex flex-col w-full  lg:max-w-[492px] h-auto lg:max-h-[508px] bg-white justify-between rounded-xl shadow-md">
   <Image
-    src={"/Detail Car (1).png"}
+    src={"/Detail Car.png"}
     alt="Detail Car"
     width={492}
     height={392}
