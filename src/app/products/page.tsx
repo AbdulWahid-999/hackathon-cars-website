@@ -27,7 +27,7 @@ export default function Page() {
         <section className="w-full flex flex-col sm:flex-row items-center justify-center sm:justify-between ">
           <Image src={"/Pick - Up.png"} alt="" width={582} height={132} className="w-[200px] md:w-[270px] lg:w-[582px]" />
           <Image src={"/Switch.png"} alt="" width={60} height={60} className="w-[80px]" />
-          <Image src={"/Drop - Off.png"} alt="" width={582} height={132} className=' w-[200px] md:w-[270px] lg:w-[582px]' />
+          <Image src={"/Drop - Off.jpg"} alt="" width={582} height={132} className=' w-[200px] md:w-[270px] lg:w-[582px]' />
         </section>
         <section className="popular w-full flex flex-col gap-4">
           <div className="sec grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
