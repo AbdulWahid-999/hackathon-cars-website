@@ -11,7 +11,7 @@ export default function Navbar() {
   return (
     <Wrap>
       <header>
-        <nav className="flex justify-between items-center mt-7 lg:py-5 lg:px-5 px-1 ">
+        <nav className="flex justify-between items-center mb-10 mt-4 lg:py-5 lg:px-5 px-1 ">
           <div className="flex">
             <h1 className="text-[#3563E9] text-[24px] font-[600] lg:text-[35px] lg:font-bold lg:leading-10">
               MORENT
@@ -20,7 +20,7 @@ export default function Navbar() {
 
           {/* Mobile Header */}
         
-            <div className="flex   justify-between items-center    lg:flex-row lg:items-center lg:-translate-x-[220px] absolute left-[5px] top-[80px] xxxs:left-[35px] xxs:left-[55px] xs:left-[80px] xsm:relative xsm:left-[0px] xsm:top-1">
+            <div className="flex   justify-between items-center    lg:flex-row lg:items-center lg:-translate-x-[0px] absolute left-[5px] top-[80px] xxxs:left-[35px] xxs:left-[55px] xs:left-[80px] xsm:relative xsm:left-[0px] xsm:top-1">
               <div className="flex items-center ">
                 <Link href="/">
                   <CiSearch className="text-lg md:left-10 lg:left-12 md:text-2xl relative left-6" />
