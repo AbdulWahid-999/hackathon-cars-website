@@ -7,7 +7,8 @@ export default {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {screens: {
+    extend: {
+      screens: {
       'xxxs': '360px',
       'xxs': '400px' ,
       'xs': '480px',  // Custom breakpoint for extra small devices
@@ -15,8 +16,9 @@ export default {
       'sm': '650px',  // Small screens (default)
       'md': '768px',  // Medium screens
       'lg': '1024px', // Large screens
-      'xl': '1280px', // Extra large screens
-      '2xl': '1536px', // 2x Extra large screens
+      'xl': '1280px',
+      '2xl': '1350px', // Extra large screens
+      '3xl': '1536px', // 2x Extra large screens
     },
       colors: {
         background: "var(--background)",
