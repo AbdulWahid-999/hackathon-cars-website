@@ -4,7 +4,6 @@ import Link from "next/link";
 import Wrap from '../../components/Wrap';
 import Sidebar from '@/app/components/Sidebar';
 
-// Define types for Car
 interface Car {
   _id: string;
   name: string;
@@ -17,7 +16,12 @@ interface Car {
   imageUrl: string;
 }
 
-// Fetch car details from Sanity
+interface CarDetailsPageProps {
+  params: {
+    slug: string;
+  };
+}
+
 async function getCarDetails(slug: string): Promise<Car | null> {
   const query = `*[_type == "car" && slug.current == $slug][0]{
     _id,
@@ -33,15 +37,10 @@ async function getCarDetails(slug: string): Promise<Car | null> {
 
   const params = { slug };
   const data = await client.fetch(query, params);
-  return data ?? null;  // Return null if no data is found
+  return data ?? null; // Return null if no data is found
 }
 
-// Main Page Component
-export default async function CarDetailsPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export default async function CarDetailsPage({ params }: CarDetailsPageProps) {
   const car = await getCarDetails(params.slug);
 
   if (!car) {
