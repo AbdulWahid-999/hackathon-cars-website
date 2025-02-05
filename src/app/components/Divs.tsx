@@ -71,8 +71,8 @@ const PickDrop = () => {
       </div>
 
 
-      <div className="flex items-center justify-center w-12 h-12 md:w-14 md:h-14 bg-blue-500 text-white rounded-md shadow-md">
-        <LuArrowDownUp size={24} />
+      <div className="flex items-center justify-center w-16 h-12  bg-blue-500 text-white rounded-md shadow-md">
+        <LuArrowDownUp size={20} />
       </div>
 
       {/* Drop-Off */}

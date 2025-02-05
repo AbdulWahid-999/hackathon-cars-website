@@ -6,7 +6,10 @@ import { TbHelp } from "react-icons/tb";
 import { TiBriefcase } from "react-icons/ti";
 import Image from "next/image";
 
-export default function Dashboard() {
+
+
+export default   function Dashboard() {
+    
     return (
         <div className="max-w-[1440px] mx-auto p-4 flex flex-col lg:flex-row gap-6 bg-white">
             {/* Sidebar */}
@@ -75,8 +78,8 @@ export default function Dashboard() {
                     <div className="mt-4 flex items-center gap-4">
                         <Image src="/View 1.png" alt="Nissan" width={64} height={64} className="object-cover rounded-md" />
                         <div>
-                            <h3 className="text-base font-semibold">Nissan GT-R</h3>
-                            <p className="text-sm text-gray-500">Sport Car</p>
+                            <h3 className="text-base font-semibold">Nissan GTR</h3>
+                            <p className="text-sm text-gray-500">Sports</p>
                         </div>
                     </div>
                     <p className="text-sm text-gray-500 mt-2">#9761</p>
