@@ -4,7 +4,21 @@ import Link from "next/link";
 import Wrap from '../../components/Wrap';
 import Sidebar from '@/app/components/Sidebar';
 
-async function getCarDetails(slug: string) {
+// Define types for Car
+interface Car {
+  _id: string;
+  name: string;
+  pricePerDay: string;
+  fuelCapacity: string;
+  seatingCapacity: string;
+  transmission: string;
+  type: string;
+  slug: string;
+  imageUrl: string;
+}
+
+// Fetch car details from Sanity
+async function getCarDetails(slug: string): Promise<Car | null> {
   const query = `*[_type == "car" && slug.current == $slug][0]{
     _id,
     name,
@@ -19,14 +33,23 @@ async function getCarDetails(slug: string) {
 
   const params = { slug };
   const data = await client.fetch(query, params);
-  return data;
+  return data ?? null;  // Return null if no data is found
 }
 
-export default async function CarDetailsPage({ params }: { params: { slug: string } }) {
+// Main Page Component
+export default async function CarDetailsPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const car = await getCarDetails(params.slug);
 
   if (!car) {
-    return <div className="text-center text-2xl font-semibold text-red-500 mt-10">Car not found!</div>;
+    return (
+      <div className="text-center text-2xl font-semibold text-red-500 mt-10">
+        Car not found!
+      </div>
+    );
   }
 
   return (
@@ -44,7 +67,19 @@ export default async function CarDetailsPage({ params }: { params: { slug: strin
           <section className="w-full flex flex-col lg:flex-row gap-6 items-center justify-center relative">
             {/* Image on the Left */}
             <div className="flex justify-center lg:w-[50%]">
-              <Image src={car.imageUrl} alt="car image" width={492} height={360} className="rounded-lg" />
+              {car.imageUrl ? (
+                <Image
+                  src={car.imageUrl}
+                  alt="car image"
+                  width={492}
+                  height={360}
+                  className="rounded-lg"
+                />
+              ) : (
+                <div className="w-full h-60 bg-gray-300 rounded-lg flex items-center justify-center">
+                  <span className="text-gray-600">No Image Available</span>
+                </div>
+              )}
             </div>
 
             {/* Car Details on the Right */}
@@ -57,7 +92,7 @@ export default async function CarDetailsPage({ params }: { params: { slug: strin
               </div>
 
               {/* Car Specifications */}
-              <ul className="text-xl font-medium  text-gray-700">
+              <ul className="text-xl font-medium text-gray-700">
                 <li className="mt-2">Fuel Capacity: {car.fuelCapacity}</li>
                 <li className="mt-2">Seating Capacity: {car.seatingCapacity}</li>
                 <li className="mt-2">Transmission: {car.transmission}</li>
@@ -79,4 +114,3 @@ export default async function CarDetailsPage({ params }: { params: { slug: strin
     </Wrap>
   );
 }
-
