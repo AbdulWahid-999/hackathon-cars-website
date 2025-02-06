@@ -2,40 +2,32 @@ import { client } from "@/sanity/lib/client";
 import Image from "next/image";
 import Link from "next/link";
 import Wrap from '../../components/Wrap';
-import Sidebar from '@/app/components/Sidebar';
+import Sidebar from "@/app/components/Sidebar";
 
-interface Car {
-  _id: string;
-  name: string;
-  pricePerDay: string;
-  fuelCapacity: string;
-  seatingCapacity: string;
-  transmission: string;
-  type: string;
-  slug: string;
-  imageUrl: string;
+
+async function getCarDetails(slug: string) {
+  const query = `*[_type == "car" && slug.current == $slug][0]{
+    _id,
+    name,
+    pricePerDay,
+    fuelCapacity,
+    seatingCapacity,
+    transmission,
+    type,
+    "slug": slug.current,
+    "imageUrl": image.asset->url
+  }`;
+
+  const params = { slug };
+  const data = await client.fetch(query, params);
+  return data;
 }
 
-// Define the params type as just an object with a `slug` key
-interface Params {
-  slug: string;
-}
-
-type CarDetailsPageProps = {
-  children?: React.ReactNode;
-  params: Params; // Change this to resolve the params directly
-};
-
-export default async function CarDetailsPage({ params }: CarDetailsPageProps) {
-  // Now params is no longer a Promise, just the resolved object
-  const car = await getCarDetails(params.slug); // Fetch the car details with the resolved slug
+export default async function CarDetailsPage({ params }: { params: Promise<{ slug: string }> }) {
+  const car = await getCarDetails((await params).slug);
 
   if (!car) {
-    return (
-      <div className="text-center text-2xl font-semibold text-red-500 mt-10">
-        Car not found!
-      </div>
-    );
+    return <div>Car not found!</div>;
   }
 
   return (
@@ -43,7 +35,7 @@ export default async function CarDetailsPage({ params }: CarDetailsPageProps) {
       {/* Wrapper */}
       <div className="w-full flex overflow-x-hidden mt-14 sm:mt-5">
         <div className="first hidden sm:flex w-[25%]">
-          {/* Sidebar */}
+          {/* Slidebar */}
           <Sidebar />
         </div>
 
@@ -53,24 +45,12 @@ export default async function CarDetailsPage({ params }: CarDetailsPageProps) {
           <section className="w-full flex flex-col lg:flex-row gap-6 items-center justify-center relative">
             {/* Image on the Left */}
             <div className="flex justify-center lg:w-[50%]">
-              {car.imageUrl ? (
-                <Image
-                  src={car.imageUrl}
-                  alt="car image"
-                  width={492}
-                  height={360}
-                  className="rounded-lg"
-                />
-              ) : (
-                <div className="w-full h-60 bg-gray-300 rounded-lg flex items-center justify-center">
-                  <span className="text-gray-600">No Image Available</span>
-                </div>
-              )}
+              <Image src={car.imageUrl} alt="car image" width={492} height={360} className="rounded-lg" />
             </div>
 
             {/* Car Details on the Right */}
             <div className="flex flex-col lg:w-[50%] items-start gap-4 justify-between md:ml-14 md:mt-10 mt-3">
-              <h2 className="text-2xl font-semibold text-gray-700 mb-2">{car.name}</h2>
+              <h2 className="text-3xl font-semibold text-gray-700 mb-2">{car.name}</h2>
 
               {/* Price below the Image */}
               <div className="text-xl font-bold text-gray-800 mb-4">
@@ -78,7 +58,7 @@ export default async function CarDetailsPage({ params }: CarDetailsPageProps) {
               </div>
 
               {/* Car Specifications */}
-              <ul className="text-xl font-medium text-gray-700">
+              <ul className="text-xl font-medium  text-gray-700">
                 <li className="mt-2">Fuel Capacity: {car.fuelCapacity}</li>
                 <li className="mt-2">Seating Capacity: {car.seatingCapacity}</li>
                 <li className="mt-2">Transmission: {car.transmission}</li>
@@ -99,23 +79,4 @@ export default async function CarDetailsPage({ params }: CarDetailsPageProps) {
       </div>
     </Wrap>
   );
-}
-
-// Fetch car details based on the slug
-async function getCarDetails(slug: string): Promise<Car | null> {
-  const query = `*[_type == "car" && slug.current == $slug][0]{
-    _id,
-    name,
-    pricePerDay,
-    fuelCapacity,
-    seatingCapacity,
-    transmission,
-    type,
-    "slug": slug.current,
-    "imageUrl": image.asset->url
-  }`;
-
-  const params = { slug };
-  const data = await client.fetch(query, params);
-  return data ?? null;  // Return null if no data found
 }
