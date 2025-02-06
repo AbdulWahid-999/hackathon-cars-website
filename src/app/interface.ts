@@ -35,17 +35,3 @@ export interface Car {
     imageUrl: string; 
                 // URL for the car's image
   }
-  export interface CarAdmin {
-      _id: Key | null | undefined;
-                   // Unique identifier for the car
-    name: string;                // Name of the car
-                    // Type of the car (e.g., Sedan, SUV)
-          // Transmission type (e.g., Automatic, Manual)
-    pricePerDay: number;         // Daily rental price
-        // Number of seats in the car
-       // Fuel capacity of the car in liters
-    imageUrl: string; 
-                // URL for the car's image
-                type: string;                // Type of the car (e.g., Sedan, SUV)
-  }
-     
