@@ -16,12 +16,14 @@ interface Car {
   imageUrl: string;
 }
 
+// Define the props to include the slug params
 interface CarDetailsPageProps {
   params: {
-    slug: string;
+    slug: string; // Correctly type slug here
   };
 }
 
+// Fetch car details based on the slug
 async function getCarDetails(slug: string): Promise<Car | null> {
   const query = `*[_type == "car" && slug.current == $slug][0]{
     _id,
@@ -37,9 +39,10 @@ async function getCarDetails(slug: string): Promise<Car | null> {
 
   const params = { slug };
   const data = await client.fetch(query, params);
-  return data ?? null; // Return null if no data is found
+  return data ?? null;  // Return null if no data found
 }
 
+// Define the component, receiving props with the params object
 export default async function CarDetailsPage({ params }: CarDetailsPageProps) {
   const car = await getCarDetails(params.slug);
 
