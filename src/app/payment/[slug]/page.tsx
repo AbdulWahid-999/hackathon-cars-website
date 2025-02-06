@@ -218,7 +218,7 @@ const Payment = async ({ params }: { params: Promise<{ slug: string }> }) => {
                     </Link>
 
                     <Image
-                        src="/Safe Data .png"
+                        src="/Safe Data.png"
                         alt="safe"
                         width={700}
                         height={400}
