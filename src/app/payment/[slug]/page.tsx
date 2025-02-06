@@ -267,7 +267,7 @@ const Payment = async ({ params }: { params: Promise<{ slug: string }> }) => {
                             <span className="font-medium text-base text-[#90A3BF]">
                                 Tax
                             </span>
-                            <span className="font-semibold text-base">$0</span>
+                            <span className="font-semibold text-base">$2</span>
                         </div>
                     </div>
                     <div className="my-5 flex justify-between items-center p-3 border rounded-lg w-full h-[56px]">
@@ -283,7 +283,7 @@ const Payment = async ({ params }: { params: Promise<{ slug: string }> }) => {
                                 Overall price and includes rental discount
                             </span>
                         </div>
-                        <span className="text-3xl font-bold">${data?.pricePerDay}</span>
+                        <span className="text-3xl font-bold">{data?.pricePerDay}</span>
                     </div>
                 </section>
             </div>
