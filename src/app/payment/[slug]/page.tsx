@@ -16,8 +16,12 @@ async function getDataPayment(slug: string) {
     return data;
 }
 
-const Payment = async ({ params }: { params: { slug: string } }) => {
-    const data = await getDataPayment(params.slug); // Fetch car data based on the slug
+const Payment = async ({ params }: { params: Promise<{ slug: string }> }) => {
+    const data = await getDataPayment((await params).slug); // Fetch car data based on the slug
+
+    if (!data) {
+        return <div>Loading...</div>; // Handle loading or no data found
+    }
 
     return (
         <div className="min-h-s-3 gap-6">
@@ -73,7 +77,7 @@ const Payment = async ({ params }: { params: { slug: string } }) => {
                                     {["Location", "Date", "Time"].map((field, i) => (
                                         <div key={i}>
                                             <label
-                                                htmlFor={`${type}-${field.toLowerCase()}`}
+                                                htmlFor={`${type.toLowerCase()}-${field.toLowerCase()}`}
                                                 className="block text-base font-semibold mb-2"
                                             >
                                                 {field}
@@ -83,8 +87,8 @@ const Payment = async ({ params }: { params: { slug: string } }) => {
                                                     field === "Date"
                                                         ? "date"
                                                         : field === "Time"
-                                                            ? "text"
-                                                            : "text"
+                                                        ? "text"
+                                                        : "text"
                                                 }
                                                 placeholder={field}
                                                 className="w-full p-3 rounded-md bg-gray-100"
@@ -192,8 +196,8 @@ const Payment = async ({ params }: { params: { slug: string } }) => {
                         ready!
                     </p>
                     <div className="space-y-4 mt-9">
-                        {[
-                            "I agree with sending marketing emails.",
+                        {[ 
+                            "I agree with sending marketing emails.", 
                             "I agree with terms and conditions.",
                         ].map((text, idx) => (
                             <label
@@ -205,14 +209,14 @@ const Payment = async ({ params }: { params: { slug: string } }) => {
                             </label>
                         ))}
                     </div>
-                    <Link href={`/admin`}>
+                    <Link href="/admin">
                         <button className="w-[140px] p-3 mt-4 bg-blue-500 text-white rounded-md">
                             Rent Now
                         </button>
                     </Link>
 
                     <Image
-                        src="/Safe Data.png"
+                        src="/Safe Data .png"
                         alt="safe"
                         width={700}
                         height={400}
@@ -231,14 +235,14 @@ const Payment = async ({ params }: { params: { slug: string } }) => {
                     </p>
                     <div className="flex items-center space-x-4">
                         <Image
-                            src={data.imageUrl}  // Dynamically load the image from Sanity
-                            alt={data.name}  // Set the car name as the alt text
+                            src={data?.imageUrl || "/default-image.png"}  // fallback image if data.imageUrl is undefined
+                            alt={data?.name || "Car Image"}
                             width={100}
                             height={100}
-                            className=" w-[150px] h-[80px] md:w-[300px] md:h-[120px] rounded-lg object-cover"
+                            className="w-[150px] h-[80px] md:w-[300px] md:h-[120px] rounded-lg object-cover"
                         />
                         <div>
-                            <h3 className="text-3xl font-bold">{data.name}</h3>  {/* Display car name */}
+                            <h3 className="text-3xl font-bold">{data?.name}</h3>  {/* Display car name */}
                             <div className="flex items-center gap-[4px]">
                                 <p className="text-yellow-500 flex items-center gap-[2px]">
                                     <FaStar />
@@ -247,7 +251,7 @@ const Payment = async ({ params }: { params: { slug: string } }) => {
                                     <FaStar />
                                     <CiStar />
                                 </p>
-                                <p className="text-gray-500">450+ Reviews</p>
+                                <p className="text-gray-500">440+ Reviews</p>
                             </div>
                         </div>
                     </div>
@@ -257,20 +261,20 @@ const Payment = async ({ params }: { params: { slug: string } }) => {
                             <span className="font-medium text-base text-[#90A3BF]">
                                 Subtotal
                             </span>
-                            <span className="font-semibold text-base ">{`${data.pricePerDay}`}</span>  {/* Display car price */}
+                            <span className="font-semibold text-base">${data?.pricePerDay}</span>
                         </div>
                         <div className="flex justify-between text-gray-700">
                             <span className="font-medium text-base text-[#90A3BF]">
                                 Tax
                             </span>
-                            <span className="font-semibold text-base ">$2</span>
+                            <span className="font-semibold text-base">$0</span>
                         </div>
                     </div>
                     <div className="my-5 flex justify-between items-center p-3 border rounded-lg w-full h-[56px]">
                         <span className="font-medium text-base text-[#90A3BF]">
-                            Apply promo code{" "}
+                            Apply promo code
                         </span>
-                        <span className="font-smedium mx-4 text-base ">Apply code</span>
+                        <span className="font-semibold mx-4 text-base">Apply code</span>
                     </div>
                     <div className="mt-4 flex justify-between items-center font-bold text-lg gap-1">
                         <div className="flex flex-col">
@@ -279,7 +283,7 @@ const Payment = async ({ params }: { params: { slug: string } }) => {
                                 Overall price and includes rental discount
                             </span>
                         </div>
-                        <span className="text-3xl font-bold">{`${data.pricePerDay}`}</span>  {/* Display total rental price */}
+                        <span className="text-3xl font-bold">${data?.pricePerDay}</span>
                     </div>
                 </section>
             </div>

@@ -5,6 +5,7 @@ import Wrap from '../../components/Wrap';
 import Sidebar from "@/app/components/Sidebar";
 
 
+
 async function getCarDetails(slug: string) {
   const query = `*[_type == "car" && slug.current == $slug][0]{
     _id,
