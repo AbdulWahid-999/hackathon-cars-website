@@ -241,7 +241,7 @@ const Payment = async ({ params }: { params: Promise<{ slug: string }> }) => {
                             alt={data?.name || "Car Image"}
                             width={100}
                             height={100}
-                            className="w-[150px] h-[80px] md:w-[270px] md:h-[110px] rounded-lg object-cover"
+                            className="w-[150px] h-[80px] md:w-[250px] md:h-[100px] rounded-lg object-cover"
                         />
                         <div>
                             <h3 className="text-3xl font-bold">{data?.name}</h3>  {/* Display car name */}
