@@ -5,12 +5,14 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { TbHelp } from "react-icons/tb";
 import { TiBriefcase } from "react-icons/ti";
 import Image from "next/image";
+import Wrap from "../components/Wrap";
 
 
 
 export default   function Dashboard() {
     
     return (
+        <Wrap>
         <div className="max-w-[1440px] mx-auto p-4 flex flex-col lg:flex-row gap-6 bg-white">
             {/* Sidebar */}
             <div className="lg:w-[286px] w-full bg-white p-4 rounded-lg flex flex-col justify-between shadow-md">
@@ -120,5 +122,6 @@ export default   function Dashboard() {
                 </div>
             </div>
         </div>
+        </Wrap>
     );
 }

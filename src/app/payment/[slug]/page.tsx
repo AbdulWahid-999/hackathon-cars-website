@@ -1,3 +1,4 @@
+import Wrap from "@/app/components/Wrap";
 import { client } from "@/sanity/lib/client";
 import Image from "next/image";
 import Link from "next/link";
@@ -24,6 +25,7 @@ const Payment = async ({ params }: { params: Promise<{ slug: string }> }) => {
     }
 
     return (
+        <Wrap>
         <div className="min-h-s-3 gap-6">
             <div className="lg:col-span-2 space-y-8">
                 {/* Billing Information */}
@@ -288,6 +290,7 @@ const Payment = async ({ params }: { params: Promise<{ slug: string }> }) => {
                 </section>
             </div>
         </div>
+        </Wrap>
     );
 };
 
